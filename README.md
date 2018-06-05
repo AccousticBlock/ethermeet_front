@@ -1,7 +1,9 @@
-### first accoustic dapp
+# first accoustic dapp
 
 create-react-app
+
 mui
+
 web3-react
 
 ## front setting up
