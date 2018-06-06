@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 
-export default class FormAppoint extends Component {
+export default class MakeMeetForm extends Component {
   render() {
     return (
       <form noValidate autoComplete="off">

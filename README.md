@@ -3,14 +3,13 @@
 create-react-app
 
 mui
-`
+
 https://material-ui.com/
-`
+
 web3-react
 
-`
 https://www.npmjs.com/package/react-web3
-`
+
 ## front setting up
 
 pre-requisites: git, node, yarn(or npm)
