@@ -6,8 +6,9 @@ import TextField from '@material-ui/core/TextField';
 
 export default class MeetUp extends Component {
   render() {
+    console.log(this.props)
     return (
-      <TextField>jkl;</TextField>
+      <TextField>{this.props.hostname}</TextField>
     )
   }
   handleChange = name => event => {

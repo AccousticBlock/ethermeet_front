@@ -6,10 +6,11 @@ import TextField from '@material-ui/core/TextField';
 import MeetUp from './MeetUp'
 
 export default class MeetList extends Component {
+  // const arr= [{},{},{},];
   render() {
     return (
       <div>
-      <MeetUp />
+      <MeetUp hostname={'june'}/>
       <MeetUp />
       <MeetUp />
       <MeetUp />
