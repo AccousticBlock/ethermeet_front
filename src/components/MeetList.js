@@ -7,6 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 import MeetUp from './MeetUp'
 
 const TableHeadCell = withStyles(theme => ({
@@ -23,14 +24,16 @@ const styles = theme => ({
   root: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
-    overflowX: 'auto',
   },
   table: {
     minWidth: 700,
   },
   cell: {
-    width: '33%',
+    width: '33.33%',
     textAlign: 'center',
+    flexBasis: '33.33%',
+    flexShrink: 0,
+    fontSize: theme.typography.pxToRem(15),
   },
   row: {
     '&:nth-of-type(odd)': {
@@ -47,23 +50,15 @@ function MeetList(props) {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableHeadCell className={classes.cell}>Title</TableHeadCell>
+            <TableHeadCell className={classes.cell}><p>Title</p></TableHeadCell>
             <TableHeadCell className={classes.cell}>Host Name</TableHeadCell>
-            <TableHeadCell className={classes.cell}>Date</TableHeadCell>            
+            <TableHeadCell className={classes.cell}>Date</TableHeadCell>
           </TableRow>
         </TableHead>
-        <TableBody>
-          <MeetUp title={'title1'} name={'june'} date={'2015-01-12'} />
-          <MeetUp title={'title1'} name={'june'} date={'2015-01-12'} />
-          <MeetUp title={'title1'} name={'june'} date={'2015-01-12'} />
-          <MeetUp title={'title1'} name={'june'} date={'2015-01-12'} />
-          <MeetUp title={'title1'} name={'june'} date={'2015-01-12'} />
-          <MeetUp title={'title1'} name={'june'} date={'2015-01-12'} />
-          <MeetUp title={'title1'} name={'june'} date={'2015-01-12'} />
-          <MeetUp title={'title1'} name={'june'} date={'2015-01-12'} />
-          <MeetUp title={'title1'} name={'june'} date={'2015-01-12'} />
-        </TableBody>
       </Table>
+      <MeetUp title={'title1'} name={'june'} date={'2015-01-12'} desc={'desc desc desc desc desc desc desc desc'} />
+      <MeetUp title={'title1'} name={'june'} date={'2015-01-12'} desc={'desc desc desc desc desc desc desc desc'} />
+      <MeetUp title={'title1'} name={'june'} date={'2015-01-12'} desc={'desc desc desc desc desc desc desc desc'} />
     </Paper>
   );
 }
