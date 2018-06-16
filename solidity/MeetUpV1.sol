@@ -1,35 +1,28 @@
-pragma solidity ^0.4.23;
-
-import "openzeppelin-solidity/contracts/math/SafeMath.sol";
-import "openzeppelin-solidity/contracts/ownership/Ownable.sol";
-
-
-/**
- * @title RefundVault
- * @dev This contract is used for storing funds while a crowdsale
- * is in progress. Supports refunding the money if crowdsale fails,
- * and forwarding it if crowdsale is successful.
- */
 contract MeetUpV1 is Ownable {
   using SafeMath for uint256;
   enum State { BeforeMeetup, OnMeeting, OnRefunding, RefundingFinished, Closed }
-  address host;
-  uint capability;
-  uint fee;
-  uint deposited;
-  uint password;
-  State state;
-  uint endDate;
+  address public host;
+  uint public capability;
+  uint public fee;
+  uint public deposited;
+  uint public password;
+  State public state;
+  uint public endDate;
   address[] attendees;
   address[] refundedAttendees;
 
+  modifier onlyHost () {
+     require(host == msg.sender); 
+     _;
+  }
+  event RequestArrive(address attendee, uint fee);
   event OnMeeting();
   event Refunded(address host, uint fee);
   event RefundsEnabled();
   event RefundingFinished();
   event Closed();
 
-  function MeetUpV1(address _host, uint _capability, uint _password, uint _endDate) {
+  function MeetUpV1(address _host, uint _capability, uint _password, uint _endDate) payable {
     host = _host;
     capability = _capability;
     password = _password;
@@ -38,10 +31,11 @@ contract MeetUpV1 is Ownable {
     deposited = 0;
   }
 
-  function deposit(address attendee) onlyOwner public payable {
-    require(state == State.BeforeMeetup);
-    if (msg.value == 0) throw;
-    attendees.push(msg.sender);
+  function requestWithDeposit(address attendee) public payable {
+    //require(state == State.BeforeMeetup);
+    emit RequestArrive(msg.sender, msg.value);
+    if (msg.value < 0) throw;
+    attendees.push(attendee);
   }
 
   function close() onlyOwner public {
@@ -61,5 +55,9 @@ contract MeetUpV1 is Ownable {
     deposited =  deposited - fee;
     attendee.transfer(fee);
     emit Refunded(attendee, fee);
+  }
+  
+  function getAtttendees() constant returns (address[]) {
+      return attendees;
   }
 }
